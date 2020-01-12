@@ -31,13 +31,27 @@ const dashboardRoutes = [
   {
     path: "/noueau-contrat",
     name: "Nouveau contrat",
-    icon: "pe-7s-user",
+    icon: "pe-7s-note",
     component: ContraPage,
     layout: "/admin"
   },
   {
     path: "/contrats",
-    name: "Mes contrats",
+    name: "Contrats",
+    icon: "pe-7s-car",
+    component: Contrats,
+    layout: "/admin"
+  },
+  {
+    path: "/nouvel-facture",
+    name: "Nouvelle facture",
+    icon: "pe-7s-note",
+    component: ContraPage,
+    layout: "/admin"
+  },
+  {
+    path: "/factures",
+    name: "Factures",
     icon: "pe-7s-note2",
     component: Contrats,
     layout: "/admin"

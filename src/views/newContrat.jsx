@@ -5,8 +5,7 @@ import {
   Row,
   Col,
   Breadcrumb,
-  ControlLabel,
-  FormControl
+  ListGroup, ListGroupItem
 } from "react-bootstrap";
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
@@ -16,7 +15,112 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 
 class NewContrat extends Component {
+  constructor(){
+    super()
+    this.state = {
+      Nom : '',
+      prenom : '',
+      societe : '',
+      adresse : '',
+      codePostale : '',
+      ville : '',
+      phone : '',
+      email : '',
+      nomCond : '',
+      PrenoCond : '',
+      Permisn : '',
+      Delivre : '',
+      naissance : '',
+      lieuNaiss : '',
+      marque : '',
+      modele : '',
+      immat : '',
+      type : '',
+      couleur : '',
+      depart : '',
+      heureDep : '',
+      kmDepart : '',
+      retour : '',
+      heureRet : '',
+      kmRetour : '',
+      qteJour : 0,
+      prixJour : 0,
+      kmSupp : 0,
+      prixKm : 0,
+      totalKm : 0,
+      franchiseQte : 0,
+      franchisePrix : 0,
+      franchiseTotal : 0,
+      assitanceQte : 0,
+      assitancePrix : 0,
+      assitanceTotal : 0,
+      carburantQte : 0,
+      carburantPrix: 0,
+      carburantTotal: 0,
+      prestationQte : 0,
+      prestationPrix : 0,
+      prestationTotal : 0,
+      caution : 0,
+      TotalHT : 0,
+      TotalTTC : 0,
+      TotalTVA : 0
+    }
+  }
+  FormValue = (event) => {
+    this.setState({ [event.target.name]: event.target.value,  });
+  }
   render() {
+    const { Nom, prenom ,
+    societe,
+    adresse,
+    codePostale,
+    ville,
+    phone,
+    email ,
+    nomCond ,
+    PrenoCond ,
+    Permisn ,
+    Delivre ,
+    naissance ,
+    lieuNaiss ,
+    marque ,
+    modele ,
+    immat ,
+    type ,
+    couleur ,
+    depart ,
+    heureDep ,
+    kmDepart ,
+    retour ,
+    heureRet ,
+    kmRetour ,
+    qteJour ,
+    prixJour ,
+    kmSupp ,
+    prixKm ,
+    franchiseQte ,
+    franchisePrix ,
+    assitanceQte,
+    assitancePrix ,
+    carburantQte ,
+    carburantPrix,
+    prestationQte ,
+    prestationPrix ,
+    caution ,
+    TotalHT ,
+    TotalTVA  } = this.state;
+
+    var prestationTotal = prestationPrix * prestationQte
+    var carburantTotal = carburantPrix * carburantQte
+    var assitanceTotal = assitancePrix * assitanceQte
+    var franchiseTotal = franchisePrix * franchiseQte
+    var totalKm = prixKm * kmSupp
+    var totalJour = prixJour * qteJour
+
+    var TotalTTC = 0
+    var TVA = TotalTTC - (TotalTTC / 1.2)
+    var TotalHTCalcule = TotalTTC - TVA;
+    console.log(this.state);
     return (
       <div className="content">
         <Grid>
@@ -38,21 +142,27 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Nom",
-                          defaultValue: ""
+                          defaultValue: Nom,
+                          name : 'Nom',
+                          onChange : this.FormValue 
                         },
                         {
                           label: "Prénom",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Prénom",
-                          defaultValue: ""
+                          defaultValue: prenom,
+                          name : 'prenom',
+                          onChange : this.FormValue 
                         },
                         {
                           label: "Société",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Société",
-                          defaultValue: ""
+                          defaultValue: societe,
+                          name : 'societe',
+                          onChange : this.FormValue 
                         }
                       ]}
                     />
@@ -64,21 +174,27 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Adresse",
-                          defaultValue: ""
+                          defaultValue: adresse,
+                          name : 'adresse',
+                          onChange : this.FormValue 
                         },
                         {
                           label: "Code postale",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Code postale",
-                          defaultValue: ""
+                          defaultValue: codePostale,
+                          name : 'codePostale',
+                          onChange : this.FormValue 
                         },
                         {
                           label: "Ville",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Ville",
-                          defaultValue: ""
+                          defaultValue: ville,
+                          name : 'ville',
+                          onChange : this.FormValue 
                         }
                       ]}
                     />
@@ -90,14 +206,18 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Téléphone",
-                          defaultValue: ""
+                          defaultValue: phone,
+                          name : 'phone',
+                          onChange : this.FormValue 
                         },
                         {
                           label: "Email",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Email",
-                          defaultValue: ""
+                          defaultValue: email,
+                          name : 'email',
+                          onChange : this.FormValue 
                         }
                       ]}
                     />
@@ -312,26 +432,32 @@ class NewContrat extends Component {
                         {
                           type: "text",
                           bsClass: "form-control",
+                          label: "Description",
                           placeholder: "Forfait journalier",
                           defaultValue: "Jours prévus"
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
+                          label: "Nombre de jours",
                           placeholder: "Nombre de jours",
-                          defaultValue: ""
+                          name : 'qteJour',
+                          onChange : this.FormValue 
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Prix/jour",
-                          defaultValue: ""
-                        } ,
+                          label: "Prix/jour",
+                          placeholder: "Prix/jour en TTC",
+                          name : 'prixJour',
+                          onChange : this.FormValue 
+                        },
                         {
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Total HT",
-                          defaultValue: "1499"
+                          placeholder: "Total TTC",
+                          label: "Total TTC",
+                          value: totalJour,
                         }
                       ]}
                     />
@@ -481,7 +607,7 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Total HT",
-                          defaultValue: "1499"
+                          defaultValue: prestationTotal
                         }
                       ]}
                     />
@@ -509,6 +635,16 @@ class NewContrat extends Component {
                       ]}
                     />
                    </Col>
+                   <Col md={8}>
+
+                   </Col>
+                   <Col md={4}>
+                   <ListGroup>
+                    <ListGroupItem style={{textAlign:'right'}}>TOTAL HT : {TotalHTCalcule.toFixed(2)} €</ListGroupItem>
+                    <ListGroupItem style={{textAlign:'right'}}>TVA (20%) : {TVA.toFixed(2)} €</ListGroupItem>
+                    <ListGroupItem style={{textAlign:'right', fontWeight:'bold', fontSize:18}}>TOTAL TTC : {TotalTTC.toFixed(2)} €</ListGroupItem>
+                  </ListGroup>
+                  </Col>
                    <Col md={12}>
                     <Button bsStyle="danger" pullRight fill type="submit">
                       Créer le contrat

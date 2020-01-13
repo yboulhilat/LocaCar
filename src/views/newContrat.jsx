@@ -9,10 +9,8 @@ import {
 } from "react-bootstrap";
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
-import avatar from "assets/img/faces/face-3.jpg";
 
 class NewContrat extends Component {
   constructor(){
@@ -61,9 +59,6 @@ class NewContrat extends Component {
       prestationPrix : 0,
       prestationTotal : 0,
       caution : 0,
-      TotalHT : 0,
-      TotalTTC : 0,
-      TotalTVA : 0
     }
   }
   FormValue = (event) => {
@@ -107,8 +102,7 @@ class NewContrat extends Component {
     prestationQte ,
     prestationPrix ,
     caution ,
-    TotalHT ,
-    TotalTVA  } = this.state;
+    } = this.state;
 
     var prestationTotal = prestationPrix * prestationQte
     var carburantTotal = carburantPrix * carburantQte
@@ -116,8 +110,7 @@ class NewContrat extends Component {
     var franchiseTotal = franchisePrix * franchiseQte
     var totalKm = prixKm * kmSupp
     var totalJour = prixJour * qteJour
-
-    var TotalTTC = 0
+    var TotalTTC = prestationTotal + carburantTotal + assitanceTotal + franchiseTotal + totalKm + totalJour
     var TVA = TotalTTC - (TotalTTC / 1.2)
     var TotalHTCalcule = TotalTTC - TVA;
     console.log(this.state);
@@ -474,19 +467,21 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Saisir le nombre de km supplémentaire",
-                          defaultValue: ""
+                          name : 'kmSupp',
+                          onChange : this.FormValue
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Prix au Km",
-                          defaultValue: ""
+                          name : 'prixKm',
+                          onChange : this.FormValue
                         } ,
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Total HT",
-                          defaultValue: "1499"
+                          value: totalKm
                         }
                       ]}
                     />
@@ -508,19 +503,21 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Quantité",
-                          defaultValue: ""
+                          name : 'franchiseQte',
+                          onChange : this.FormValue
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Prix unitaire",
-                          defaultValue: ""
+                          name : 'franchisePrix',
+                          onChange : this.FormValue
                         } ,
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Total HT",
-                          defaultValue: "1499"
+                          value: franchiseTotal
                         }
                       ]}
                     />
@@ -537,19 +534,21 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Quantité",
-                          defaultValue: ""
+                          name : 'assitanceQte',
+                          onChange : this.FormValue
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Prix unitaire",
-                          defaultValue: ""
+                          name : 'assitancePrix',
+                          onChange : this.FormValue
                         } ,
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Total HT",
-                          defaultValue: "1499"
+                          value: assitanceTotal
                         }
                       ]}
                     />
@@ -566,19 +565,21 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Quantité",
-                          defaultValue: ""
+                          name : "carburantQte",
+                          onChange : this.FormValue
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Prix unitaire",
-                          defaultValue: ""
+                          placeholder: "Prix unitaire", 
+                          name : 'carburantPrix', 
+                          onChange : this.FormValue
                         } ,
                         {
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Total HT",
-                          defaultValue: "1499"
+                          placeholder: "Total HT", 
+                          value: carburantTotal
                         }
                       ]}
                     />
@@ -595,19 +596,21 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Quantité",
-                          defaultValue: ""
+                          name : 'prestationQte',
+                          onChange : this.FormValue 
                         },
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Prix unitaire",
-                          defaultValue: ""
+                          name : 'prestationPrix',
+                          onChange : this.FormValue 
                         } ,
                         {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Total HT",
-                          defaultValue: prestationTotal
+                          value: prestationTotal,
                         }
                       ]}
                     />
@@ -630,7 +633,8 @@ class NewContrat extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Montant de la caution",
-                          defaultValue: ""
+                          name : 'caution',
+                          onChange : this.FormValue 
                         }
                       ]}
                     />

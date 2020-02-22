@@ -1,23 +1,8 @@
-/*!
 
-=========================================================
-* Light Bootstrap Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import Accueil from "views/Dashboard.jsx";
 import ContraPage from "views/newContrat";
-import Contrats from "views/TableList.jsx";
+import ContraPage2 from "views/newContrat_2.jsx";
+import Contrats from "views/Contrats.jsx";
 
 
 const dashboardRoutes = [
@@ -26,19 +11,30 @@ const dashboardRoutes = [
     name: "Accueil",
     icon: "pe-7s-graph",
     component: Accueil,
+    visible : true,
     layout: "/admin"
   },
   {
     path: "/noueau-contrat",
     name: "Nouveau contrat",
     icon: "pe-7s-note",
+    visible : true,
     component: ContraPage,
+    layout: "/admin"
+  },
+  {
+    path: "/noueau-contrat-2",
+    name: "Etape 2",
+    icon: "pe-7s-note",
+    visible : false,
+    component: ContraPage2,
     layout: "/admin"
   },
   {
     path: "/contrats",
     name: "Contrats",
     icon: "pe-7s-car",
+    visible : true,
     component: Contrats,
     layout: "/admin"
   },
@@ -46,12 +42,14 @@ const dashboardRoutes = [
     path: "/nouvel-facture",
     name: "Nouvelle facture",
     icon: "pe-7s-note",
+    visible : true,
     component: ContraPage,
     layout: "/admin"
   },
   {
     path: "/factures",
     name: "Factures",
+    visible : true,
     icon: "pe-7s-note2",
     component: Contrats,
     layout: "/admin"
